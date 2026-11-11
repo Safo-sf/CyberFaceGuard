@@ -1,0 +1,44 @@
+
+#define MyAppName "CyberFaceGuard"
+#define MyAppVersion "1.3.0"
+#define MyAppPublisher "CyberFaceGuard"
+#define MyAppExeName "CyberFaceGuard.exe"
+
+[Setup]
+AppId={{8B7F4D2A-6A2D-4C8F-B8F2-7C9A41D2E6F0}
+AppName={#MyAppName}
+AppVersion={#MyAppVersion}
+AppPublisher={#MyAppPublisher}
+
+DefaultDirName={autopf}\CyberFaceGuard
+DefaultGroupName=CyberFaceGuard
+
+OutputDir=installer
+OutputBaseFilename=CyberFaceGuard_Setup_v1.3.0
+
+SetupIconFile=assets\cyberfaceguard.ico
+UninstallDisplayIcon={app}\{#MyAppExeName}
+
+Compression=lzma
+SolidCompression=yes
+WizardStyle=modern
+
+ArchitecturesInstallIn64BitMode=x64compatible
+PrivilegesRequired=admin
+UninstallDisplayName=CyberFaceGuard
+
+[Files]
+Source: "dist\CyberFaceGuard\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+
+; Copy the icon into the installation directory
+Source: "assets\cyberfaceguard.ico"; DestDir: "{app}\assets"; Flags: ignoreversion
+
+[Icons]
+; Start Menu shortcut
+Name: "{autoprograms}\CyberFaceGuard"; Filename: "{app}\{#MyAppExeName}"; IconFilename: "{app}\assets\cyberfaceguard.ico"; WorkingDir: "{app}"
+
+; Desktop shortcut
+Name: "{autodesktop}\CyberFaceGuard"; Filename: "{app}\{#MyAppExeName}"; IconFilename: "{app}\assets\cyberfaceguard.ico"; WorkingDir: "{app}"
+
+[Run]
+Filename: "{app}\{#MyAppExeName}"; Description: "Launch CyberFaceGuard"; Flags: nowait postinstall skipifsilent
